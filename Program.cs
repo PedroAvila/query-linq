@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,35 +48,43 @@ namespace QueryLinq
             //    Console.WriteLine("     {0}", firstOrder.OrderID);
             //}
 
-            //IQueryable<OrderExtend> orders = from o in context.Order_Details
-            //                                 join p in context.Products on o.ProductID equals p.ProductID
-            //                                 join c in context.Categories on p.CategoryID equals c.CategoryID
-            //                                 select new OrderExtend
-            //                                 {
-            //                                     OrderId = o.OrderID,
-            //                                     ProductName = p.ProductName,
-            //                                     CategoryName = c.CategoryName,
-            //                                     UnitPrice = o.UnitPrice,
-            //                                     Quantity = o.Quantity
-            //                                 };
+            var timer = new Stopwatch();
+            timer.Start();
 
-            List<OrderExtend> orders2 = context.Order_Details
-                                        .Include("Product")
-                                        .Include("Category")
-                                        .Select(x => new OrderExtend()
-                                        {
-                                            OrderId = x.OrderID,
-                                            ProductName = x.Product.ProductName,
-                                            CategoryName = x.Product.Category.CategoryName,
-                                            UnitPrice = x.UnitPrice,
-                                            Quantity = x.Quantity
-                                        }).ToList();
+            IQueryable<OrderExtend> orders = from o in context.Order_Details
+                                             join p in context.Products on o.ProductID equals p.ProductID
+                                             join c in context.Categories on p.CategoryID equals c.CategoryID
+                                             select new OrderExtend
+                                             {
+                                                 OrderId = o.OrderID,
+                                                 ProductName = p.ProductName,
+                                                 CategoryName = c.CategoryName,
+                                                 UnitPrice = o.UnitPrice,
+                                                 Quantity = o.Quantity
+                                             };
 
-            foreach (var order in orders2)
+            //List<OrderExtend> orders2 = context.Order_Details
+            //                            .Include("Product")
+            //                            .Include("Category")
+            //                            .Select(x => new OrderExtend()
+            //                            {
+            //                                OrderId = x.OrderID,
+            //                                ProductName = x.Product.ProductName,
+            //                                CategoryName = x.Product.Category.CategoryName,
+            //                                UnitPrice = x.UnitPrice,
+            //                                Quantity = x.Quantity
+            //                            }).ToList();
+
+            timer.Stop();
+
+            foreach (var order in orders)
             {
                 Console.WriteLine($"{order.OrderId} - {order.ProductName} - {order.CategoryName} - {order.UnitPrice} - {order.Quantity}");
             }
 
+            TimeSpan timeTaken = timer.Elapsed;
+            string foo = string.Empty;
+            Console.WriteLine($"Time taken: {timeTaken.ToString(@"m\:ss\.fff")}");
             Console.ReadKey();
 
         }
