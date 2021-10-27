@@ -1,0 +1,11 @@
+C:\Csharp\QueryLinq\bin\Debug\QueryLinq.exe.config
+C:\Csharp\QueryLinq\bin\Debug\QueryLinq.exe
+C:\Csharp\QueryLinq\bin\Debug\QueryLinq.pdb
+C:\Csharp\QueryLinq\bin\Debug\EntityFramework.dll
+C:\Csharp\QueryLinq\bin\Debug\EntityFramework.SqlServer.dll
+C:\Csharp\QueryLinq\bin\Debug\EntityFramework.xml
+C:\Csharp\QueryLinq\bin\Debug\EntityFramework.SqlServer.xml
+C:\Csharp\QueryLinq\obj\Debug\QueryLinq.csproj.AssemblyReference.cache
+C:\Csharp\QueryLinq\obj\Debug\QueryLinq.csproj.CoreCompileInputs.cache
+C:\Csharp\QueryLinq\obj\Debug\QueryLinq.exe
+C:\Csharp\QueryLinq\obj\Debug\QueryLinq.pdb
